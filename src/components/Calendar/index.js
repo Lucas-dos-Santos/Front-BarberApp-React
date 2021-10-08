@@ -1,70 +1,52 @@
-/* eslint-disable */
-import React from "react";
-import FullCalendar, { formatDate } from "@fullcalendar/react";
-import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import axios from "../../services/api";
+
 import "./index.css";
 
 const Calendar = () => {
-  let teste = [
-    "09:00 - 09:30",
-    "09:30 - 10:00",
-    "10:00 - 10:30",
-    "10:30 - 11:00",
-    "11:30 - 12:00",
-    "14:00 - 14:30",
-    "14:30 - 15:00",
-    "15:30 - 16:00",
-    "16:30 - 17:00",
-    "17:00 - 17:30",
-    "17:30 - 18:00",
-  ];
-  let arr = [
-    true,
-    false,
-    true,
-    true,
-    true,
-    false,
-    true,
-    false,
-    true,
-    false,
-    false,
-  ];
+  const [arr, setArr] = useState();
+  const date = new Date();
+  const [selectDay, setSelectDay] = useState(
+    `${date.getFullYear()}-${date.getDate()}-${date.getMonth() + 1}`
+  );
+  useEffect(() => {
+    function getDate() {
+      axios.get(`/${selectDay}`).then((resp) => setArr(resp.data));
+      console.log(selectDay);
+    }
 
-  const handleDateSelect = (selectInfo) => {
-    alert("fff");
+    getDate();
+  }, [selectDay, setArr]);
+
+  const handleDateSelect = (e) => {
+    setSelectDay(e.startStr);
   };
 
   return (
     <main>
       <div className="container">
         <div className="demo-app-sidebar-section text-center">
-          <h3>Horarios Disponiveis</h3>
-          {teste.map((value, key) => {
-            if (!arr[key] === true) {
+          <h3>Horarios Disponiveis: {`${selectDay}`}</h3>
+          {arr && arr.length === 0 && (
+            <p>Nenhum horário disponível nesta data</p>
+          )}
+          {arr &&
+            arr.map((value, key) => {
               return (
-                <Button
-                  href="#"
+                <Link
                   key={key}
-                  variant="secondary"
-                  size="sm"
-                  disabled
+                  to="/agendar"
+                  className="btn btn-outline-primary btn-sm"
                 >
                   {value}
-                </Button>
+                </Link>
               );
-            } else {
-              return (
-                <Button href="#" key={key} variant="primary" size="sm">
-                  {value}
-                </Button>
-              );
-            }
-          })}
+            })}
         </div>
       </div>
       <div className="demo-app">
