@@ -17,7 +17,11 @@ const NavBar = () => {
                 Horarios
               </Link>
             </li>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
+            <li className="nav-item">
+              <Link to="/agendamentos" className="nav-link text-light">
+                Agendamentos
+              </Link>
+            </li>
             <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">

@@ -16,8 +16,7 @@ const Calendar = () => {
   );
   useEffect(() => {
     function getDate() {
-      axios.get(`/${selectDay}`).then((resp) => setArr(resp.data));
-      console.log(selectDay);
+      axios.get(`free/${selectDay}`).then((resp) => setArr(resp.data));
     }
 
     getDate();
@@ -40,7 +39,7 @@ const Calendar = () => {
               return (
                 <Link
                   key={key}
-                  to="/agendar"
+                  to={`/agendar/${value}/${selectDay}`}
                   className="btn btn-outline-primary btn-sm"
                 >
                   {value}
