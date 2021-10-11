@@ -24,10 +24,17 @@ const ToSchedule = (date) => {
               disabled
             />
           </Form.Group>
-
           <Form.Group className="mb-3">
             <Form.Label>Horario</Form.Label>
             <Form.Control type="text" value={date.match.params.hour} disabled />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Serviço</Form.Label>
+            <Form.Select aria-label="Default select example">
+              <option value="1">Corte - Cabelo R$ 20,00</option>
+              <option value="1">Corte com final feliz R$ 200,00</option>
+              <option value="1">Corte +Barba R$ 35,00</option>
+            </Form.Select>
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Nome completo</Form.Label>
