@@ -4,33 +4,44 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import Loading from "../Loading";
 import axios from "../../services/api";
 
 import "./index.css";
 
 const Calendar = () => {
   const [arr, setArr] = useState();
+  const [isLoad, setIsLoad] = useState();
   const date = new Date();
   const [selectDay, setSelectDay] = useState(
-    `${date.getFullYear()}-${date.getDate()}-${date.getMonth() + 1}`
+    `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
   );
+  const [dateTitle, setDateTitle] = useState([
+    date.getFullYear(),
+    date.getMonth() + 1,
+    date.getDate(),
+  ]);
   useEffect(() => {
-    function getDate() {
-      axios.get(`free/${selectDay}`).then((resp) => setArr(resp.data));
-    }
+    const getDate = async () => {
+      setIsLoad(true);
+      await axios.get(`free/${selectDay}`).then((resp) => setArr(resp.data));
+      setIsLoad(false);
+    };
 
     getDate();
   }, [selectDay, setArr]);
 
   const handleDateSelect = (e) => {
     setSelectDay(e.startStr);
+    setDateTitle(e.startStr.split("-"));
   };
 
   return (
     <main>
-      <div className="container">
+      {isLoad && <Loading />}
+      <div className="container mt-3">
         <div className="demo-app-sidebar-section text-center">
-          <h3>Horarios Disponiveis: {`${selectDay}`}</h3>
+          <h3>Horarios Disponiveis: {`${dateTitle[2]}/${dateTitle[1]}`}</h3>
           {arr && arr.length === 0 && (
             <p>Nenhum horário disponível nesta data</p>
           )}
@@ -56,7 +67,7 @@ const Calendar = () => {
               today: "Hoje",
             }}
             headerToolbar={{
-              left: "prev,next today",
+              left: "",
               center: "title",
               right: "",
             }}

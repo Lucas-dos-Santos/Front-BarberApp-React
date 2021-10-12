@@ -1,19 +1,48 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
+import Loading from "../../components/Loading";
+import axios from "../../services/api";
 
 const ToSchedule = (date) => {
   const [phone, setPhone] = useState("");
   const [name, setName] = useState("");
+  const [service, setService] = useState("Corte - Cabelo R$ 20,00");
+  const [isLoad, setIsLoad] = useState();
+  const history = useHistory();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    setIsLoad(true);
     e.preventDefault();
 
-    toast.error("Os campos não podem estar vazios", { theme: "colored" });
-    console.log("oi");
+    if (phone === "" || name === "") {
+      return toast.error("Os campos não podem estar vazios", {
+        theme: "colored",
+      });
+    }
+    try {
+      await axios.post("schedule", {
+        data: date.match.params.date,
+        hour: date.match.params.hour,
+        service: service,
+        client_name: name,
+        phone_number: phone,
+      });
+      history.push("/");
+      return toast.success("Horário agendado com sucesso", {
+        theme: "colored",
+      });
+    } catch (err) {
+      return err;
+    } finally {
+      setIsLoad(false);
+    }
   };
   return (
     <div className="row d-flex justify-content-center mt-3">
+      {isLoad && <Loading />}
       <div className="col-8">
         <Form>
           <Form.Group className="mb-3">
@@ -30,10 +59,13 @@ const ToSchedule = (date) => {
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Serviço</Form.Label>
-            <Form.Select aria-label="Default select example">
-              <option value="1">Corte - Cabelo R$ 20,00</option>
-              <option value="1">Corte com final feliz R$ 200,00</option>
-              <option value="1">Corte +Barba R$ 35,00</option>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e) => setService(e.target.value)}
+            >
+              <option>Corte - Cabelo R$ 20,00</option>
+              <option>Corte com final feliz R$ 200,00</option>
+              <option>Corte + Barba R$ 35,00</option>
             </Form.Select>
           </Form.Group>
           <Form.Group className="mb-3">
