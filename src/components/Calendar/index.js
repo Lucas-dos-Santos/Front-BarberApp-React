@@ -40,7 +40,7 @@ const Calendar = () => {
     <main>
       {isLoad && <Loading />}
       <div className="container mt-3">
-        <div className="demo-app-sidebar-section text-center">
+        <div className="demo-app-sidebar-section text-center text-light">
           <h3>Horarios Disponiveis: {`${dateTitle[2]}/${dateTitle[1]}`}</h3>
           {arr && arr.length === 0 && (
             <p>Nenhum horário disponível nesta data</p>
@@ -51,7 +51,7 @@ const Calendar = () => {
                 <Link
                   key={key}
                   to={`/agendar/${value}/${selectDay}`}
-                  className="btn btn-outline-primary btn-sm"
+                  className="btn btn-primary btn-sm mb-1 me-1"
                 >
                   {value}
                 </Link>
@@ -60,7 +60,7 @@ const Calendar = () => {
         </div>
       </div>
       <div className="demo-app">
-        <div className="demo-app-main">
+        <div className="demo-app-main text-light">
           <FullCalendar
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
             buttonText={{

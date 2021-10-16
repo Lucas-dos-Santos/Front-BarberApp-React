@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import Loading from "../../components/Loading";
 import axios from "../../services/api";
+import "./style.css";
 
 const ToSchedule = (date) => {
   const [phone, setPhone] = useState("");
@@ -41,11 +42,11 @@ const ToSchedule = (date) => {
     }
   };
   return (
-    <div className="row d-flex justify-content-center mt-3">
+    <div className="row d-flex justify-content-center mt-2">
       {isLoad && <Loading />}
-      <div className="col-8">
+      <div className="col-8 text-light shadow form-sched">
         <Form>
-          <Form.Group className="mb-3">
+          <Form.Group className="mb-2">
             <Form.Label>Data</Form.Label>
             <Form.Control
               type={"text"}
@@ -53,11 +54,11 @@ const ToSchedule = (date) => {
               disabled
             />
           </Form.Group>
-          <Form.Group className="mb-3">
+          <Form.Group className="mb-2">
             <Form.Label>Horario</Form.Label>
             <Form.Control type="text" value={date.match.params.hour} disabled />
           </Form.Group>
-          <Form.Group className="mb-3">
+          <Form.Group className="mb-2">
             <Form.Label>Serviço</Form.Label>
             <Form.Select
               aria-label="Default select example"
@@ -68,7 +69,7 @@ const ToSchedule = (date) => {
               <option>Corte + Barba R$ 35,00</option>
             </Form.Select>
           </Form.Group>
-          <Form.Group className="mb-3">
+          <Form.Group className="mb-2">
             <Form.Label>Nome completo</Form.Label>
             <Form.Control
               type="text"
@@ -76,7 +77,7 @@ const ToSchedule = (date) => {
               value={name}
             />
           </Form.Group>
-          <Form.Group className="mb-3">
+          <Form.Group className="mb-2">
             <Form.Label>Telefone</Form.Label>
             <Form.Control
               type="tel"

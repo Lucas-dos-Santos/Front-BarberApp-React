@@ -21,10 +21,9 @@ const Scheduling = () => {
   return (
     <div className="container mt-3">
       {isLoad && <Loading />}
-      <Table striped bordered hover size="sm">
+      <Table bordered hover size="sm" className="text-light">
         <thead>
           <tr>
-            <th>#</th>
             <th>Data</th>
             <th>Horario</th>
             <th>Cliente</th>
@@ -36,15 +35,7 @@ const Scheduling = () => {
           {schedulings &&
             schedulings.map((value, key) => (
               <tr key={key}>
-                <td>{value.id}</td>
-                <td>
-                  {new Date(value.data).toLocaleString("pt-BR", {
-                    weekday: "long",
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </td>
+                <td>{value.data}</td>
                 <td>{value.hour}</td>
                 <td>{value.client_name}</td>
                 <td>{value.service}</td>
