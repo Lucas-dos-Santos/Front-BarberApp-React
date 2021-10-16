@@ -14,8 +14,8 @@ const App = () => (
   <BrowserRouter>
     {/* <NavBar /> */}
     <Switch>
-      <Route exact path="/" component={HomePage} />
-      <Route exact path="/teste" component={Teste} />
+      <Route exact path="/" component={Teste} />
+      <Route exact path="/teste" component={HomePage} />
       <Route exact path="/horarios" component={Calendar} />
       <Route exact path="/agendamentos" component={Schedulings} />
       <Route exact path="/agendar/:hour/:date" component={ToSchedule} />
