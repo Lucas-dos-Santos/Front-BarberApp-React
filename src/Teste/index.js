@@ -16,8 +16,8 @@ const Teste = () => {
           <FaInstagram size={26} color="#f3505a" />
         </div>
         <div>
-          <h5 className="title">Lista de Serviços</h5>
-          <div className="d-flex justify-content-around mb-3">
+          <h5 className="title my-3 mx-4">Lista de Serviços</h5>
+          <div className="d-flex justify-content-between mx-4 mb-5 box-a">
             <div className="box">
               <strong>Corte - Cabelo</strong> <br /> R$ 19,99
             </div>
@@ -25,7 +25,7 @@ const Teste = () => {
               Agendar
             </button>
           </div>
-          <div className="d-flex justify-content-around mb-3">
+          <div className="d-flex justify-content-between mx-4 mb-5 box-a">
             <div className="box">
               <strong>Corte - Barba</strong> <br /> R$ 19,99
             </div>
@@ -33,9 +33,9 @@ const Teste = () => {
               Agendar
             </button>
           </div>
-          <div className="d-flex justify-content-around">
+          <div className="d-flex justify-content-between mx-4 box-a">
             <div className="box">
-              <strong>Corte + Barba</strong> <br /> R$ 34,99
+              <strong>Cabelo + Barba</strong> <br /> R$ 34,99
             </div>
             <button type="button" className="btn-sched">
               Agendar

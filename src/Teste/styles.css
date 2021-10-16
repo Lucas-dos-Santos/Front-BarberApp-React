@@ -10,7 +10,7 @@
 
 .name {
   position: absolute;
-  right: 2.5rem;
+  right: 2rem;
   top: 9rem;
   font-size: 1.2rem;
   font-weight: bold;
@@ -18,7 +18,6 @@
 }
 
 .title {
-  margin-left: 2rem;
   color: #2f9dd1;
   font-weight: bold;
 }
@@ -62,7 +61,8 @@
 }
 
 .img-profile {
-  border-radius: 50%;
+  border-radius: 10px;
+  border: 4px solid white;
   background-color: lightgrey;
   position: relative;
   left: 3rem;
@@ -78,4 +78,10 @@
   font-weight: bold;
   border: none;
   padding: 0 1rem;
+}
+
+@media (min-width: 600px) {
+  .box-a {
+    justify-content: space-around !important;
+  }
 }
