@@ -1,5 +1,5 @@
 import "./styles.css";
-import { FaInstagram } from "react-icons/fa";
+import { FaInstagram, FaFacebook } from "react-icons/fa";
 
 const Teste = () => {
   console.log("oi");
@@ -7,12 +7,14 @@ const Teste = () => {
     <>
       <div className="container-top" />
       <div className="container-bottom">
-        <div className="img-profile" />
+        <img src="profile.png" alt="profile" className="img-profile" />
         <span className="name">Sandro Buchecha</span>
+        <div className="button-face">
+          <FaFacebook size={26} color="#3b5998" />
+        </div>
         <div className="button">
           <FaInstagram size={26} color="#f3505a" />
         </div>
-
         <div>
           <h5 className="title">Lista de Serviços</h5>
           <div className="d-flex justify-content-around mb-3">
@@ -40,7 +42,6 @@ const Teste = () => {
             </button>
           </div>
         </div>
-        <div className="box-bottom mt-5" />
       </div>
     </>
   );
